@@ -529,4 +529,14 @@
      ${sql}
   </select>
 
+  <select id="selectTaskGroupAssignmentReport" paramenterType="org.camunda.bpm.engine.impl.persistence.TaskReportImpl" resultType="taskGroupAssignmentReportResult">
+    select
+        count(T.ID_),
+        I.GROUP_ID_
+    FROM ${prefix}ACT_RU_TASK T
+      left join ${prefix}ACT_RU_IDENTITYLINK I
+          on I.TASK_ID_ = T.ID_
+      GROUP by I.GROUP_ID_
+  </select>
+
 </mapper>
